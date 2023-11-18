@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createTask } from '../../store/todoList/todoListSlice';
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+// import { createTask } from '../../store/todoList/todoListSlice'
+import './styles.sass'
+import { createTaskAsync } from '../../store/todoList/todoListActions'
 
 const TaskForm = () => {
-  const [newTask, setNewtask] = useState('');
+  const [newTask, setNewtask] = useState('')
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     dispatch(
-      createTask({
+      createTaskAsync({
         task: newTask,
         status: false,
       })
-    );
-    setNewtask('');
-    console.log(newTask);
-  };
+    )
+    setNewtask('')
+  }
 
   return (
     <>
@@ -31,7 +32,7 @@ const TaskForm = () => {
         <button>Crear Tarea</button>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default TaskForm;
+export default TaskForm

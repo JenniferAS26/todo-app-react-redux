@@ -1,22 +1,27 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   deleteTask,
   toggleStatusTask,
-} from '../../store/todoList/todoListSlice';
+} from '../../store/todoList/todoListSlice'
+import { fillTodoListAsync } from '../../store/todoList/todoListActions'
 
 const ListTask = () => {
-  const todoList = useSelector(store => store.todoList.todoList);
+  const todoList = useSelector(store => store.todoList.todoList)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleToggleStatus = index => {
-    dispatch(toggleStatusTask(index));
-  };
+    dispatch(toggleStatusTask(index))
+  }
 
   const handleDeleteTask = index => {
-    dispatch(deleteTask(index));
-  };
+    dispatch(deleteTask(index))
+  }
+
+  useEffect(() => {
+    dispatch(fillTodoListAsync())
+  }, [dispatch])
 
   return (
     <ul>
@@ -34,7 +39,7 @@ const ListTask = () => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default ListTask;
+export default ListTask

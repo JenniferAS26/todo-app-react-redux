@@ -5,6 +5,8 @@ import {
   toggleStatusTask,
 } from '../../store/todoList/todoListSlice'
 import { fillTodoListAsync } from '../../store/todoList/todoListActions'
+import { MdDelete } from "react-icons/md"
+import './styles.sass'
 
 const ListTask = () => {
   const todoList = useSelector(store => store.todoList.todoList)
@@ -35,7 +37,9 @@ const ListTask = () => {
             />
             <span>{task.task}</span>
           </label>
-          <button onClick={() => handleDeleteTask(index)}>Eliminar</button>
+          <button className='delete-task' onClick={() => handleDeleteTask(index)}>
+            <MdDelete />
+          </button>
         </li>
       ))}
     </ul>

@@ -70,7 +70,7 @@ const ListTask = () => {
                 : <span>{task.task}</span>
             }
           </label>
-          <div>
+          <div className='button-wrapper'>
             <button className='delete-task' onClick={() => handleEditNameTask(task)}>
               <MdOutlineEdit />
             </button>

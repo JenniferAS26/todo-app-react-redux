@@ -12,10 +12,10 @@ const todoListSlice = createSlice({
     createTask: (state, action) => {
       state.todoList = [...state.todoList, action.payload]
     },
-    toggleStatusTask: (state, action) => {
-      state.todoList = state.todoList.map((task, index) => {
-        if (index === action.payload) {
-          return { ...task, status: !task.status }
+    modifiedTask: (state, action) => {
+      state.todoList = state.todoList.map((task) => {
+        if (task.id === action.payload.id) {
+          return action.payload
         }
         return task
       })
@@ -23,7 +23,7 @@ const todoListSlice = createSlice({
     deleteTask: (state, action) => {
       state.todoList = state.todoList.filter(
         // guion al piso para no emplear el primer parametro
-        (_, index) => index !== action.payload
+        ( task ) => task.id !== action.payload
       )
     },
     fillTodoList: (state, action) => {
@@ -37,5 +37,5 @@ const todoListSlice = createSlice({
 
 export default todoListSlice.reducer
 
-export const { createTask, toggleStatusTask, deleteTask, fillTodoList, setError } =
+export const { createTask, modifiedTask, deleteTask, fillTodoList, setError } =
   todoListSlice.actions
